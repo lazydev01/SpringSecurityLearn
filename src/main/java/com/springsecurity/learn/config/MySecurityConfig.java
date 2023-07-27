@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
@@ -18,10 +19,14 @@ public class MySecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                .csrf(httpSecurityCsrfConfigurer -> CookieCsrfTokenRepository.withHttpOnlyFalse())
                 .authorizeHttpRequests((authz) -> authz
-                        .requestMatchers("/home/**").hasRole("USER")                        .anyRequest().authenticated()
+                        .requestMatchers("/signIn").permitAll()
+                        .requestMatchers("/home/**").hasRole("USER")
+                        .requestMatchers("/users/**").hasRole("ADMIN")
+                        .anyRequest().authenticated()
                 )
-                .httpBasic(Customizer.withDefaults());
+                .formLogin(formLogin -> formLogin.loginPage("/signIn"));
         return http.build();
     }
     @Bean

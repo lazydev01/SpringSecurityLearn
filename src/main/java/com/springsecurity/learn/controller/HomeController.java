@@ -16,7 +16,7 @@ public class HomeController {
     public String register(){
         return "This is Register Page";
     }
-    @GetMapping("/login")
+    @GetMapping("/login.html")
     public String login(){
         return "This is Login Page";
     }
