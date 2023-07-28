@@ -1,5 +1,8 @@
 package com.springsecurity.learn.model;
 
+import jakarta.persistence.*;
+
+@Entity
 public class User {
 
     public User(){
@@ -11,10 +14,12 @@ public class User {
         this.email = email;
         this.password = password;
     }
-
+    @Id
     private String username;
     private String email;
     private String password;
+
+    private String role;
 
     public String getUsername() {
         return username;
@@ -38,5 +43,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
