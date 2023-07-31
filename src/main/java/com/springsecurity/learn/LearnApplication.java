@@ -29,14 +29,14 @@ public class LearnApplication implements CommandLineRunner {
 		user.setUsername("arpit");
 		user.setEmail("arpit@test.com");
 		user.setPassword(passwordEncoder.encode("arpit"));
-		user.setRole("USER");
+		user.setRole("ROLE_USER");
 
 		this.userRepository.save(user);
 		User user2 = new User();
 		user2.setUsername("banz");
 		user2.setEmail("banz@test.com");
 		user2.setPassword(passwordEncoder.encode("banz"));
-		user2.setRole("ADMIN");
+		user2.setRole("ROLE_ADMIN");
 		System.out.println("Saving User2");
 		this.userRepository.save(user2);
 	}
