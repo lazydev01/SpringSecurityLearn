@@ -37,7 +37,6 @@ public class LearnApplication implements CommandLineRunner {
 		user2.setEmail("banz@test.com");
 		user2.setPassword(passwordEncoder.encode("banz"));
 		user2.setRole("ROLE_ADMIN");
-		System.out.println("Saving User2");
 		this.userRepository.save(user2);
 	}
 }
